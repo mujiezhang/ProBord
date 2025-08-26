@@ -22,6 +22,8 @@ ProBord (**Pro**virus **Bord**er Delimiter) is a bioinformatics tool that predic
 
 <!-- /TOC -->
 
+---
+
 # Introduction
 ## 🧬 Provirus integration process
 
