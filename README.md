@@ -68,7 +68,7 @@ conda config --add channels conda-forge
 ```
 - Install dependencies
 ```
-conda create -n probord checkv=1.0.3 ncbi-genome-download
+conda create -n probord checkv=1.0.3 ncbi-genome-download blast
 conda activate probord
 ```
 - Download ProBord from github or Zenodo
