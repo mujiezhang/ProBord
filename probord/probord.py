@@ -1005,6 +1005,7 @@ def process_and_write_results(original_info):
     Args:
         original_info (dict): Dictionary mapping temporary names to original input data.
     """
+    host_dict = SeqIO.to_dict(SeqIO.parse(host_fasta_path, "fasta"))
     att_prediction_path = os.path.join(working_path, ATT_PREDICTION_TSV)
     with open(att_prediction_path, "w") as f:
         header = [
@@ -1090,10 +1091,15 @@ def process_and_write_results(original_info):
             att_length = att_header_parts[-1]
             score_val = att_info[-2]
 
-            att_seqs = att_info[-1].split('|')
-            # The attachment sequences from the query and subject of the BLAST hit
-            attl_seq = att_seqs[-2] if len(att_seqs) >= 2 else 'N/A'
-            attr_seq = att_seqs[-1] if len(att_seqs) >= 1 else 'N/A'
+            # Extract att sequences directly from host genome using coordinates
+            contig = original_info[name][1]
+            host_seq = str(host_dict[contig].seq)
+            attl_start = int(attl_r_s_e[0])
+            attl_end = int(attl_r_s_e[1])
+            attr_start = int(attl_r_s_e[2])
+            attr_end = int(attl_r_s_e[3])
+            attl_seq = host_seq[attl_start - 1:attl_end]
+            attr_seq = host_seq[attr_start - 1:attr_end]
             
             if name in original_info:
                 output_line = '\t'.join(original_info[name]) + '\t' + temp_name + '\t' + \
