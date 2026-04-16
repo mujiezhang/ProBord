@@ -1,0 +1,8 @@
+[2025-08-14 10:43:20] Command: probord.py -hf phage_HP2/LR134490.1.fna -vf phage_HP2/phage_HP2_location.tsv -db g__Haemophilus -cv checkv-db-v1.5/ -t 20 -wd phage_HP2_prediction
+[2025-08-14 10:43:20] ProBord started. Version: 1.0
+[2025-08-14 10:43:20] [1/3] Preprocessing virus information and running CheckV
+[2025-08-14 10:43:28] [2/3] Identifying candidate attB sites
+[2025-08-14 10:43:34] [3/3] Comparing candidate attB sites against database and scoring
+
+✨🌟✨🌟✨🌟✨🌟✨🌟✨🌟 SUCCESS 🌟✨🌟✨🌟✨🌟✨🌟✨🌟✨
+ProBord completed - Total time: 14.26s, Max memory usage: 1.33 GB
