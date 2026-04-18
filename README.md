@@ -66,7 +66,7 @@ source ~/.bashrc
 conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
-- Install dependencies
+- Install ProBord
 ```
 conda create -n probord probord
 conda activate probord
