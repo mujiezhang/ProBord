@@ -58,7 +58,7 @@ ncbi-genome-download
 
 ## Installation
 
-- Install miniconda and add channels (If already installed, please skip)
+- Install miniconda and add channels (**If already installed, please skip**)
 ```
 wget -c https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
