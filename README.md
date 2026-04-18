@@ -81,7 +81,7 @@ conda activate probord
     **Note**: We are currently developing algorithms to compress DNA sequences while preserving potential attB sites, aiming to reduce runtime memory consumption.
 
 ## How to run
-- ▶️ Command line options - `probord -h`:
+- ▶️ Command line options: `probord -h`:
 ```
 usage: probord [-h] [-v] {run,prepare_db} ...
 
