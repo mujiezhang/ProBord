@@ -81,34 +81,20 @@ conda activate probord
     **Note**: We are currently developing algorithms to compress DNA sequences while preserving potential attB sites, aiming to reduce runtime memory consumption.
 
 ## How to run
-- Command line options
+- ▶️ Command line options - `probord -h`:
 ```
-ProBord: Provirus Border Delimiter
+usage: probord [-h] [-v] {run,prepare_db} ...
 
-usage: probord.py -hf <host_fasta> -vf <virus_info> -wd <output_dir> -db <blastn_db> [-cv <checkv_db>]
+ProBord: Provirus Border Delimiter v1.0
 
-Required arguments:
-  -hf <path>, --host_fasta <path>
-                        Host genome/contig file containing provirus (FASTA format)
-  -vf <path>, --virus_information <path>
-                        A tab-delimited file with columns: viral_name, host_contig, start, end
-  -wd <path>, --working_path <path>
-                        Path to the output directory
-  -db <path>, --blastn_db <path>
-                        Path to the BLASTn database for attB detection
+positional arguments:
+  {run,prepare_db}  Available commands
+    run             Run the ProBord pipeline for provirus border delimitation
+    prepare_db      Download NCBI genomes and build BLAST database for a genus
 
-Optional arguments:
-  -cv <path>, --checkv_db <path>
-                        Path to the CheckV database
-  -s <int>, --score <int>
-                        Cutoff for attB score (default: 20)
-  -t <int>, --threads <int>
-                        Number of threads to use (default: 8)
-  -k, --keep-temp       Keep temporary files after the run
-
-Information:
-  -h, --help            Show this help message and exit
-  -v, --version         show program's version number and exit
+options:
+  -h, --help        show this help message and exit
+  -v, --version     show program's version number and exit
 ```
 
 We provide two test datasets:
@@ -121,10 +107,10 @@ These datasets respectively represent: `Short-att phages (5–11 bp att sites)` 
 - run an example
 ```
 # prepare blastn db for genera Mannheimia
-bash prepare_blastn_db.sh Mannheimia bacteria
+probord prepare_db Mannheimia bacteria
 
 # run ProBord with default parameters
-python probord.py -hf test/data/phage_vB_MhM_3927AP2/NZ_CP017531.1.fna  -vf test/data/phage_vB_MhM_3927AP2/phage_vB_MhM_3927AP2_location.tsv -wd phage_vB_MhM_3927AP2_prediction -cv checkv-db-v1.5/ -db Mannheimia/Mannheimia
+probord run -hf test/data/phage_vB_MhM_3927AP2/NZ_CP017531.1.fna  -vf test/data/phage_vB_MhM_3927AP2/phage_vB_MhM_3927AP2_location.tsv -wd phage_vB_MhM_3927AP2_prediction -cv checkv-db-v1.5/ -db Mannheimia/Mannheimia
 ```
 
 ## Output files
