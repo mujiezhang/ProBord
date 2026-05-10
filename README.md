@@ -29,19 +29,20 @@ ProBord (**Pro**virus **Bord**er Delimiter) is a bioinformatics tool that predic
 
 A provirus usually refers to a virus integrated into a prokaryotic chromosome as a stable genetic element. Before integration, the phage attP site and the host attB site—share core sequence—undergo site-specific recombination catalyzed by integrase (Int), producing attL and attR sites flanking the prophage in the host genome. During excision, attL and attR recombine in reverse, mediated by integrase and excisionase (Xis), restoring attP on the free phage DNA and attB on the host chromosome. Unless otherwise stated, attB, attP, and attL/R refer to their core sequences.
 
-![integration](https://github.com/user-attachments/assets/7795a4b2-fdef-4b7f-8737-99b6bd4be02d)
-
+<img width="1441" height="355" alt="integration" src="https://github.com/user-attachments/assets/6526af29-8f12-4e69-ac0a-8e521f33c703" />
 
 ## 💡 Workflow of ProBord
 
 - Step1: Preprocessing viral region
-  - CheckV is used to remove host sequence contamination from the provirus and extend 5 kb into the host region, producing a “host–attL–provirus–attR–host” mixed sequence (mix-seq).
-- Step2: Identifying candidate att
-  - Direct repeat pairs (DRPs) are identified using two strategies depending on att length. For long att sequences (≥12 bp), Blastn is used to detect DRPs within the 25 kb regions flanking both ends of the mix-seq. For short att sequences (5–11 bp), DRPs are identified by locating att hot regions.
-- Step3: Comparing and scoring
-  - Candidate attB sites are aligned against a database and scored; those meeting the scoring threshold are selected to delimit proviral borders.
+  - The inputs to ProBord are proviruses predicted using external tools such as geNomad, and host contamination is removed from the predicted viral regions using CheckV, and the trimmed provirus sequence is extended by 5 kb on both sides to generate a “host–attL–provirus–attR–host” mixed sequence (mix-seq) that captures the potential integration neighborhood;
+- Step2: Identifying candidate att cores (CACs) using length-dependent strategies
+  - For short CACs (5–11 bp), mix-seq is aligned against prokaryotic reference genomes, and att-hot regions are located based on cumulative base coverage, within which short CACs are scanned.
+  - For long CACs (≥12 bp), BLASTn is used to align the two 25 kb terminal regions of mix-seq to identify matching terminal CACs.
+- Step3: Candidate attB comparing and scoring
+  - The left and right CACs are extended by 100 bp into the flanking host regions and assembled into a candidate attB, which is then aligned against prokaryotic reference genomes and scored. The highest-scoring candidate attB is used to trace back the corresponding attL/attR positions, thereby inferring the precise integration boundary of the provirus.
 
-![workflow](https://github.com/user-attachments/assets/9cb7005f-0695-4f93-8b55-e4b6428b4d36)
+<img width="1782" height="1104" alt="probord-wokflow" src="https://github.com/user-attachments/assets/ce23bd73-c60e-403d-a052-47f174082ef0" />
+
 
 # Instructions
 
