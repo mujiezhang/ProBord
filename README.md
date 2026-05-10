@@ -34,7 +34,7 @@ A provirus usually refers to a virus integrated into a prokaryotic chromosome as
 ## 💡 Workflow of ProBord
 
 - Step1: Preprocessing viral region
-  - The inputs to ProBord are proviruses predicted using external tools such as geNomad, and host contamination is removed from the predicted viral regions using CheckV, and the trimmed provirus sequence is extended by 5 kb on both sides to generate a “host–attL–provirus–attR–host” mixed sequence (mix-seq) that captures the potential integration neighborhood;
+  - The inputs to ProBord are proviruses predicted using external tools such as geNomad, and host contamination is removed from the predicted viral regions using CheckV, and the trimmed provirus sequence is extended by 5 kb on both sides to generate a “host–attL–provirus–attR–host” mixed sequence (mix-seq) that captures the potential integration neighborhood.
 - Step2: Identifying candidate att cores (CACs) using length-dependent strategies
   - For short CACs (5–11 bp), mix-seq is aligned against prokaryotic reference genomes, and att-hot regions are located based on cumulative base coverage, within which short CACs are scanned.
   - For long CACs (≥12 bp), BLASTn is used to align the two 25 kb terminal regions of mix-seq to identify matching terminal CACs.
