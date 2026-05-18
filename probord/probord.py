@@ -267,7 +267,13 @@ def preprocessing_virus_info(host_dict, distance_cut=DEFAULT_DISTANCE_CUT):
             with open(provirus_fna, 'r') as pro:
                  for record in SeqIO.parse(pro, "fasta"):
                     header = record.description
-                    name = record.id
+                    raw_name = record.id
+                    m = re.match(r"(.+)_\d+$", raw_name)
+                    if m:
+                        name = m.group(1)
+                    else:
+                        name = raw_name
+                        
                     contig = name.split('__')[-3]
                     host_seq = host_dict[contig].seq
                     host_len = len(host_seq)
