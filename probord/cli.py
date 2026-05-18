@@ -17,7 +17,7 @@ import glob
 import shutil
 
 
-__version__ = "1.0"
+__version__ = "1.01"
 
 def setup_run_parser(subparsers):
     """Set up the 'run' subcommand parser."""
