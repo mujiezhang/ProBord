@@ -17,7 +17,7 @@ from Bio import SeqIO
 from collections import defaultdict
 
 # --- Constants ---
-__version__ = "1.0"
+__version__ = "1.01"
 PROG_NAME = "ProBord"
 LOG_FILE_NAME = "probord.log"
 QUALIFIED_PROVIRUS_FNA = "qualified_provirus.fna"
