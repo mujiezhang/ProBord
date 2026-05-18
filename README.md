@@ -98,6 +98,53 @@ options:
   -v, --version     show program's version number and exit
 ```
 
+- ▶️ Command line options for `prepare_db`: `probord prepare_db -h`:
+```
+usage: probord prepare_db [-h] [-t <int>] [-o <path>] genus [{bacteria,archaea}]
+
+Download NCBI genomes and build BLAST database for a genus
+
+positional arguments:
+  genus                 Genus name (case-sensitive)
+  {bacteria,archaea}    Domain: bacteria or archaea (default: bacteria)
+
+options:
+  -h, --help            show this help message and exit
+  -t <int>, --threads <int>
+                        Number of download threads (default: 4)
+  -o <path>, --output <path>
+                        Custom output directory (default: use genus name)
+```
+
+- ▶️ Command line options for `run`: `probord run -h`:
+```
+usage: probord run [-h] -hf <path> -vf <path> -wd <path> [-db <path>] [-cv <path>] [-s <int>] [-t <int>] [-k]
+
+Run the ProBord pipeline for provirus border delimitation
+
+options:
+  -h, --help            show this help message and exit
+
+Required arguments:
+  -hf <path>, --host_fasta <path>
+                        Host genome/contig file containing provirus (FASTA format)
+  -vf <path>, --virus_information <path>
+                        A tab-delimited file with columns: viral_name, host_contig, start, end
+  -wd <path>, --working_path <path>
+                        Path to the output directory
+  -db <path>, --blastn_db <path>
+                        Path to the BLASTn database for attB detection
+
+Optional arguments:
+  -cv <path>, --checkv_db <path>
+                        Path to the CheckV database
+  -s <int>, --score <int>
+                        Cutoff for attB score (default: 20)
+  -t <int>, --threads <int>
+                        Number of threads to use (default: 8)
+  -k, --keep-temp       Keep temporary files after the run
+```
+
 We provide two test datasets:
 
 🚩 `Mannheimia phage vB_MhM_3927AP2` and its host contig: `NZ_CP017531.1.fna`: This transposable phage features exceptionally short attL/R sites (5 bp).
