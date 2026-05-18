@@ -86,7 +86,7 @@ conda activate probord
 ```
 usage: probord [-h] [-v] {run,prepare_db} ...
 
-ProBord: Provirus Border Delimiter v1.0
+ProBord: Provirus Border Delimiter v1.01
 
 positional arguments:
   {run,prepare_db}  Available commands
