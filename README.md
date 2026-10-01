@@ -3,7 +3,7 @@
 </div>
 
 # ProBord: **Pro**virus **Bord**er Delimiter ✨
-ProBord (**Pro**virus **Bord**er Delimiter) is a bioinformatics tool that predicts the precise borders of proviruses by identifying attL/R sites.
+ProBord (**Pro**virus **Bord**er Delimiter) is a bioinformatics tool that predicts the precise borders of proviruses by identifying *att*L/R sites.
 
 ## Table of contents
 <!-- TOC -->
@@ -27,19 +27,19 @@ ProBord (**Pro**virus **Bord**er Delimiter) is a bioinformatics tool that predic
 # Introduction
 ## 🧬 Provirus integration process
 
-A provirus usually refers to a virus integrated into a prokaryotic chromosome as a stable genetic element. Before integration, the phage attP site and the host attB site—share core sequence—undergo site-specific recombination catalyzed by integrase (Int), producing attL and attR sites flanking the prophage in the host genome. During excision, attL and attR recombine in reverse, mediated by integrase and excisionase (Xis), restoring attP on the free phage DNA and attB on the host chromosome. Unless otherwise stated, attB, attP, and attL/R refer to their core sequences.
+A provirus usually refers to a virus integrated into a prokaryotic chromosome as a stable genetic element. Before integration, the phage *att*P site and the host *att*B site—share core sequence—undergo site-specific recombination catalyzed by integrase (Int), producing *att*L and *att*R sites flanking the prophage in the host genome. During excision, *att*L and *att*R recombine in reverse, mediated by integrase and excisionase (Xis), restoring *att*P on the free phage DNA and *att*B on the host chromosome. Unless otherwise stated, *att*B, *att*P, and *att*L/R refer to their core sequences.
 
 <img width="1441" height="355" alt="integration" src="https://github.com/user-attachments/assets/6526af29-8f12-4e69-ac0a-8e521f33c703" />
 
 ## 💡 Workflow of ProBord
 
 - Step1: Preprocessing viral region
-  - The inputs to ProBord are proviruses predicted using external tools such as geNomad, and host contamination is removed from the predicted viral regions using CheckV, and the trimmed provirus sequence is extended by 5 kb on both sides to generate a “host–attL–provirus–attR–host” mixed sequence (mix-seq) that captures the potential integration neighborhood.
-- Step2: Identifying candidate att cores (CACs) using length-dependent strategies
-  - For short CACs (5–11 bp), mix-seq is aligned against prokaryotic reference genomes, and att-hot regions are located based on cumulative base coverage, within which short CACs are scanned.
+  - The inputs to ProBord are proviruses predicted using external tools such as geNomad, and host contamination is removed from the predicted viral regions using CheckV, and the trimmed provirus sequence is extended by 5 kb on both sides to generate a “host–*att*L–provirus–*att*R–host” mixed sequence (mix-seq) that captures the potential integration neighborhood.
+- Step2: Identifying candidate *att* cores (CACs) using length-dependent strategies
+  - For short CACs (5–11 bp), mix-seq is aligned against prokaryotic reference genomes, and *att*-hot regions are located based on cumulative base coverage, within which short CACs are scanned.
   - For long CACs (≥12 bp), BLASTn is used to align the two 25 kb terminal regions of mix-seq to identify matching terminal CACs.
-- Step3: Candidate attB comparing and scoring
-  - The left and right CACs are extended by 100 bp into the flanking host regions and assembled into a candidate attB, which is then aligned against prokaryotic reference genomes and scored. The highest-scoring candidate attB is used to trace back the corresponding attL/attR positions, thereby inferring the precise integration boundary of the provirus.
+- Step3: Candidate *att*B comparing and scoring
+  - The left and right CACs are extended by 100 bp into the flanking host regions and assembled into a candidate *att*B, which is then aligned against prokaryotic reference genomes and scored. The highest-scoring candidate *att*B is used to trace back the corresponding *att*L/*att*R positions, thereby inferring the precise integration boundary of the provirus.
 
 <img width="1782" height="1104" alt="probord-wokflow" src="https://github.com/user-attachments/assets/ce23bd73-c60e-403d-a052-47f174082ef0" />
 
@@ -75,11 +75,11 @@ conda activate probord
 
 ## Database preparation
 - Prepare the CheckV database (if needed; otherwise skip):  `checkv download_database ./ `
-- Prepare blastn database for attB detection (**required**):
+- Prepare blastn database for *att*B detection (**required**):
   - (**✅ recommended**) If your provirus originates from a specific bacterial/archaeal genus, you only need to download bacterial/archaeal genomes and create a blastn database for that genus using the script `prepare_blastn_db.sh`. For example, for the genus "Mannheimia": `bash prepare_blastn_db.sh Mannheimia bacteria`.
   - If you have numerous proviruses from diverse genera, or if you don't know your provirus host classification, you can download the NCBI nt database ( https://ftp.ncbi.nlm.nih.gov/blast/db/ ) or all bacterial/archaeal genomes from NCBI RefSeq (bacteria: https://ftp.ncbi.nlm.nih.gov/refseq/release/bacteria/ , archaea: https://ftp.ncbi.nlm.nih.gov/refseq/release/archaea/ ), create a blastn database, and then run probord. (This approach consumes substantial storage space and memory, and will significantly increase probord's runtime.)
     
-    **Note**: We are currently developing algorithms to compress DNA sequences while preserving potential attB sites, aiming to reduce runtime memory consumption.
+    **Note**: We are currently developing algorithms to compress DNA sequences while preserving potential *att*B sites, aiming to reduce runtime memory consumption.
 
 ## How to run
 - ▶️ Command line options: `probord -h`:
@@ -147,11 +147,11 @@ Optional arguments:
 
 We provide two test datasets:
 
-🚩 `Mannheimia phage vB_MhM_3927AP2` and its host contig: `NZ_CP017531.1.fna`: This transposable phage features exceptionally short attL/R sites (5 bp).
+🚩 `Mannheimia phage vB_MhM_3927AP2` and its host contig: `NZ_CP017531.1.fna`: This transposable phage features exceptionally short *att*L/R sites (5 bp).
 
-🚩 `Haemophilus phage HP2` and its host contig: `LR134490.1.fna`: This phage contains long attL/R sites (182 bp).
+🚩 `Haemophilus phage HP2` and its host contig: `LR134490.1.fna`: This phage contains long *att*L/R sites (182 bp).
 
-These datasets respectively represent: `Short-att phages (5–11 bp att sites)` and `Long-att phages (≥12 bp att sites)`
+These datasets respectively represent: `Short-*att* phages (5–11 bp *att* sites)` and `Long-*att* phages (≥12 bp *att* sites)`
 - run an example
 ```
 # prepare blastn db for genera Mannheimia
@@ -170,7 +170,7 @@ phage_vB_MhM_3927AP2_prediction/
 ├── att_prediction.tsv
 └── probord.log
 ```
-1. `attB_mix_outfmt.txt`: blast result of all candidate attB
+1. `attB_mix_outfmt.txt`: blast result of all candidate *att*B
 2. `att_prediction.tsv`: the prediction result
 3. `probord.log`: log file
 
@@ -182,7 +182,7 @@ A detailed overview of `att_prediction.tsv`:
 
 
 # Citation
-......
+Mujie Zhang *et al*., Deciphering pervasive domestication and active “dark matter” of proviruses in prokaryotes via precision border mapping. *Sci. Adv*.12, eaec5299(2026). [DOI:10.1126/sciadv.aec5299](https://www.science.org/doi/10.1126/sciadv.aec5299)
 
 # 📬 Contact
 ```
