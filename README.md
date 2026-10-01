@@ -33,12 +33,12 @@ A provirus usually refers to a virus integrated into a prokaryotic chromosome as
 
 ## 💡 Workflow of ProBord
 
-- Step1: Preprocessing viral region
-  - The inputs to ProBord are proviruses predicted using external tools such as geNomad, and host contamination is removed from the predicted viral regions using CheckV, and the trimmed provirus sequence is extended by 5 kb on both sides to generate a “host–*att*L–provirus–*att*R–host” mixed sequence (mix-seq) that captures the potential integration neighborhood.
-- Step2: Identifying candidate *att* cores (CACs) using length-dependent strategies
-  - For short CACs (5–11 bp), mix-seq is aligned against prokaryotic reference genomes, and *att*-hot regions are located based on cumulative base coverage, within which short CACs are scanned.
-  - For long CACs (≥12 bp), BLASTn is used to align the two 25 kb terminal regions of mix-seq to identify matching terminal CACs.
-- Step3: Candidate *att*B comparing and scoring
+- **Step1: Preprocessing viral region**
+  - The inputs to ProBord are proviruses predicted using external tools such as geNomad, and host contamination is removed from the predicted viral regions using CheckV, and the trimmed provirus sequence is extended by 5 kb on both sides to generate a **“host–*att*L–provirus–*att*R–host”** mixed sequence (mix-seq) that captures the potential integration neighborhood.
+- **Step2: Identifying candidate *att* cores (CACs) using length-dependent strategies**
+  - **For short CACs (5–11 bp)**, mix-seq is aligned against prokaryotic reference genomes, and *att*-hot regions are located based on cumulative base coverage, within which short CACs are scanned.
+  - **For long CACs (≥12 bp)**, BLASTn is used to align the two 25 kb terminal regions of mix-seq to identify matching terminal CACs.
+- **Step3: Candidate *att*B comparing and scoring**
   - The left and right CACs are extended by 100 bp into the flanking host regions and assembled into a candidate *att*B, which is then aligned against prokaryotic reference genomes and scored. The highest-scoring candidate *att*B is used to trace back the corresponding *att*L/*att*R positions, thereby inferring the precise integration boundary of the provirus.
 
 <img width="1782" height="1104" alt="probord-wokflow" src="https://github.com/user-attachments/assets/ce23bd73-c60e-403d-a052-47f174082ef0" />
