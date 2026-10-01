@@ -179,7 +179,11 @@ A detailed overview of `att_prediction.tsv`:
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | Mannheimia phage vB_MhM_3927AP2 | NZ_CP017531.1 | 829886 | 863606 | Mannheimia--phage--vB_MhM_3927AP2__NZ_CP017531.1__829886__863606_829886-829891-863601-863606-100-100-6 | 829886 | 829891 | 863601 | 863606 | 6 | AATACT | AATACT | 100.0 |
 
+## Recommendations
 
+1. ProBord is recommended for **high-quality provirus sequences** to reduce potential false-positive predictions. The quality of provirus genomes should be evaluated using tools such as CheckV.
+
+2. The **`-s`** parameter is a key parameter in ProBord, controlling the alignment score threshold for potential *att*B identification. A higher `-s` value (**e.g., 70**) provides more stringent filtering and can reduce false-positive predictions at the expense of potentially missing weak *att*B signals.
 
 # Citation
 Mujie Zhang *et al*., Deciphering pervasive domestication and active “dark matter” of proviruses in prokaryotes via precision border mapping. *Sci. Adv*.12, eaec5299(2026). [DOI:10.1126/sciadv.aec5299](https://www.science.org/doi/10.1126/sciadv.aec5299)
