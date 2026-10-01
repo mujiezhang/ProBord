@@ -185,6 +185,8 @@ A detailed overview of `att_prediction.tsv`:
 
 2. The **`-s`** parameter is a key parameter in ProBord, controlling the alignment score threshold for potential *att*B identification. A higher `-s` value (**e.g., 70**) provides more stringent filtering and can reduce false-positive predictions at the expense of potentially missing weak *att*B signals.
 
+3. False-positive predictions by ProBord may arise from tandem viral genomes (e.g., tandem filamentous phages) or short repetitive elements such as insertion sequences (ISs). Therefore, we recommend filtering ProBord predictions based on the length of identified *att* sequences and **excluding predictions with *att* lengths >300 bp** to minimize potential false positives.
+
 # Citation
 Mujie Zhang *et al*., Deciphering pervasive domestication and active “dark matter” of proviruses in prokaryotes via precision border mapping. *Sci. Adv*.12, eaec5299(2026). [DOI:10.1126/sciadv.aec5299](https://www.science.org/doi/10.1126/sciadv.aec5299)
 
